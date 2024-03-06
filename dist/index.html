@@ -7,7 +7,10 @@
     <title>Todo List</title>
 </head>
 <body>
-    HELLO
+    Projects
+    <nav id="nav">
+        <button>All</button>
+    </nav>
     <button id="add">add todo</button>
     <dialog id="addTodo">
         <form id="myForm">
@@ -26,6 +29,11 @@
                 <input type="date" id="todoDateInput"/>
             </label>
 
+            <label for="text" id="todoProject">
+                Project:
+                <input type="text" id="todoProjectInput"/>
+            </label>
+
                 
                 <button id="submitButton" type="submit">Add Todo</button>
                 <button id="cancelButton" type="button">Cancel</button>
@@ -33,5 +41,8 @@
             </label>
         </form>
     </dialog>
+    <div id="todos">
+
+    </div>
 </body>
 </html>
