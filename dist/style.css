@@ -1,0 +1,12 @@
+.todo {
+    padding: 20px;
+    background-color: rgba(196, 182, 169, 0.591);
+    margin: 20px;
+}
+.name, .date, .project, .time {
+    margin-left: 25px;
+}
+#todos{
+    display: flex;
+    flex-wrap: wrap;
+}

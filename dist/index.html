@@ -4,34 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Todo List</title>
 </head>
 <body>
     Projects
     <nav id="nav">
-        <button>All</button>
+        <button id="All">All</button>
     </nav>
     <button id="add">add todo</button>
     <dialog id="addTodo">
         <form id="myForm">
             <label for="Name" id="todoName">
                 Todo:
-                <input type="text" id="todoNameInput"/>
+                <input type="text" id="todoNameInput" required/>
             </label>
 
             <label for="time" id="todoTime">
                 Time:
-                <input type="time" id="todoTimeInput"/>
+                <input type="time" id="todoTimeInput" required/>
             </label>
             
             <label for="date" id="todoDate">
                 Date:
-                <input type="date" id="todoDateInput"/>
+                <input type="date" id="todoDateInput" required/>
             </label>
 
             <label for="text" id="todoProject">
                 Project:
-                <input type="text" id="todoProjectInput"/>
+                <input type="text" id="todoProjectInput" required/>
             </label>
 
                 

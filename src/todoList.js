@@ -11,10 +11,45 @@ function addToList(name,time,date,project){
     todoList.push(new todo(name,time,date,project));
 };
 
-function displayTodo(index){
-    let todo = document.createElement('div');
+function reset(){
     let todos = document.getElementById("todos");
+    todos.innerHTML="";
+
+}
+
+function addTodoToDom(index,todo){
+   
     todo.classList.add("todo");
+    let todoName = document.createElement('div');
+    todoName.innerHTML= todoList[index].name;
+    todoName.classList.add("name");
+    let todoTime = document.createElement('div');
+    todoTime.innerHTML= todoList[index].time;
+    todoTime.classList.add("time");
+    let todoDate = document.createElement('div');
+    todoDate.innerHTML= todoList[index].date;
+    todoDate.classList.add("date");
+    let todoProject = document.createElement('div');
+    todoProject.innerHTML= todoList[index].project;
+    todoProject.classList.add("project");
+    todo.append(todoName, todoProject, todoTime, todoDate );
+    return todo;
+    
+}
+function displayAll(){
+    reset();
+    let counter=0;
+    while (counter<todoList.length){
+        let td = document.createElement('div');
+        td=addTodoToDom(counter,td)
+        todos.append(td);
+        counter++;
+        
+    }
+}
+function displayTodo(index,existingProj){
+        let todo = document.createElement('div');
+        todo = addTodoToDom(index,todo);
     if(todoList[index].project!=""){
         todo.classList.add(todoList[index].project);
         let proj = document.getElementById(todoList[index].project);
@@ -23,13 +58,34 @@ function displayTodo(index){
             let button = document.createElement("button");
             button.id=todoList[index].project;
             button.innerHTML = todoList[index].project;
+            
+            button.addEventListener("click",()=>{
+                for (const child of nav.children) {
+                    child.disabled=false;
+                  }
+                  button.disabled=true;
+                reset();
+                let counter=0;
+                while (counter<todoList.length){
+                    if(todoList[counter].project==button.innerHTML){
+                        let td = document.createElement('div');
+                        td=addTodoToDom(counter,td)
+                        todos.append(td);
+                    }
+                    counter++;
+                    
+                }
+            });
             nav.append(button);
 
         }
         
     }
-    todo.innerHTML=JSON.stringify(todoList[index],null,4);
-    todos.append(todo);
+    
+    if(existingProj){
+        todos.append(todo);
+    }
+    
 
 }
 let todoList = [];
@@ -46,7 +102,17 @@ let cancel=document.getElementById("cancelButton");
 cancel.addEventListener("click",()=>{
     dialog.close();
 });
-
+let nav = document.getElementById("nav")
+let todos = document.getElementById("todos");
+let all = document.getElementById("All");
+all.addEventListener("click",()=>{
+    for (const child of nav.children) {
+        child.disabled=false;
+      }
+      nav.children[0].disabled=true;
+    displayAll();
+})
+nav.children[0].disabled=true;
 let submit = document.getElementById("submitButton");
 submit.addEventListener("click",(event)=>{
     event.preventDefault();
@@ -56,7 +122,17 @@ submit.addEventListener("click",(event)=>{
     let todoDate=document.getElementById("todoDateInput").value;
     let todoProject=document.getElementById("todoProjectInput").value;
     addToList(todoName,todoTime,todoDate,todoProject);
-    displayTodo(index);
+    
+    for (const child of nav.children) {
+        if (child.disabled){
+            if (child.innerHTML=="All" || child.innerHTML==todoProject){
+                displayTodo(index,true);
+            }
+            else{
+                displayTodo(index,false);
+            }
+        }
+      }
     index++;
     myForm.reset();
     dialog.close();
