@@ -9,4 +9,29 @@
 #todos{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+}
+
+#nav{
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+}
+button{
+    padding: 10px;
+}
+
+.topText{
+    display: flex;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: x-large;
+    background-color: rgba(0, 0, 0, 0.176);
+}
+
+#addButton{
+    display: flex;
+    justify-content: center;
 }

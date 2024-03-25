@@ -20,17 +20,17 @@ function reset(){
 function addTodoToDom(index,todo){
    
     todo.classList.add("todo");
-    let todoName = document.createElement('div');
-    todoName.innerHTML= todoList[index].name;
+    let todoName =document.createElement('div');
+    todoName.innerHTML= "What: " + todoList[index].name;
     todoName.classList.add("name");
     let todoTime = document.createElement('div');
-    todoTime.innerHTML= todoList[index].time;
+    todoTime.innerHTML= "Time: " +  todoList[index].time;
     todoTime.classList.add("time");
-    let todoDate = document.createElement('div');
-    todoDate.innerHTML= todoList[index].date;
+    let todoDate =document.createElement('div');
+    todoDate.innerHTML= "Date: " +  todoList[index].date;
     todoDate.classList.add("date");
-    let todoProject = document.createElement('div');
-    todoProject.innerHTML= todoList[index].project;
+    let todoProject =document.createElement('div');
+    todoProject.innerHTML= "Folder: " +  todoList[index].project;
     todoProject.classList.add("project");
     todo.append(todoName, todoProject, todoTime, todoDate );
     return todo;
@@ -51,7 +51,7 @@ function displayTodo(index,existingProj){
         let todo = document.createElement('div');
         todo = addTodoToDom(index,todo);
     if(todoList[index].project!=""){
-        todo.classList.add(todoList[index].project);
+        todo.classList.add(todoList[index].project.replace(/ /g,''));
         let proj = document.getElementById(todoList[index].project);
         if(!proj){
             let nav = document.getElementById("nav")
